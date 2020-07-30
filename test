@@ -1,0 +1,17 @@
+import pygame, sys
+from pygame.locals import *
+
+pygame.init()
+displaySurf = pygame.display.set_mode((800,600))
+pygame.display.set_caption('Meow')
+
+
+while running:
+    displaySurf.fill((125,125,125))
+    for event in pygame.event.get():
+        if event.type ==QUIT:
+            running = False
+    #load image
+    cat = pygame.image.load("cat.png")
+    imgrect = cat.get_rect()
+    displaySurf.blit(cat,(800-cat.width, 600-cat.height)

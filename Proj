@@ -1,0 +1,65 @@
+import pygame,sys, random
+from pygame.locals import*
+
+pygame.init()
+displaySurf = pygame.display.set_mode((600, 600))
+pygame.display.set_caption('Mr.Meowmer')
+isrunning = True
+
+cat = pygame.image.load("cat.png")
+bg  = pygame.image.load("grass bg.png")
+ghost = pygame.image.load("ghost.png")
+star = pygame.image.load("Star.png")
+treeShort = pygame.image.load("Tree_Short.png")
+treeTall = pygame.image.load("Tree_Tall.png")
+finish = pygame.image.load("catgirl.png")
+
+catRect = cat.get_rect()
+catRect.centerx = 20
+catRect.centery = 580
+
+bgRect = bg.get_rect()
+
+ghostRect = ghost.get_rect()
+
+starRect= star.get_rect()
+
+treeShortRect = treeShort.get_rect()
+treeShortRect.centerx = random.randint(20,500)
+treeShortRect.centery = random.randint(20,500)
+
+treeTallRect = treeTall.get_rect()
+
+finishRect = finish.get_rect()
+
+
+vx=1
+vy=1
+
+while isrunning:
+    #displaySurf.fill((125,125,125))
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            isrunning=False
+    key = pygame.key.get_pressed()
+    if(key[K_w]):
+        catRect.top -= vy
+    if(key[K_s]):
+        catRect.top += vy
+    if(key[K_a]):
+        catRect.left -= vx
+    if(key[K_d]):
+        catRect.left += vx
+
+    displaySurf.blit(bg,bgRect)
+    displaySurf.blit(cat,catRect)
+    displaySurf.blit(ghost,ghostRect)
+    displaySurf.blit(star,starRect)
+    displaySurf.blit(treeShort,treeShortRect)
+    displaySurf.blit(treeTall,treeTallRect)
+    displaySurf.blit(finish,finishRect)
+    pygame.display.update()
+pygame.quit()
+sys.exit()
+
+
